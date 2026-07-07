@@ -79,7 +79,7 @@ const MediaRenderer = ({ item, isExpanded = false, isPlayingInline = false }: { 
   if (isVideo) {
     if (!isExpanded && !isPlayingInline) {
       return (
-        <div className="relative w-full aspect-[4/5] sm:aspect-video bg-black flex items-center justify-center overflow-hidden">
+        <div className="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
           <img 
             src={item.poster || displayUrl.replace('.mp4', '.jpg')} 
             alt={item.title || "Video thumbnail"}
@@ -486,7 +486,7 @@ function Home() {
             {loading ? (
               Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="flex flex-col">
-                  <div className="aspect-[4/5] w-full rounded-xl bg-surface-200 animate-pulse" />
+                  <div className="aspect-video w-full rounded-xl bg-surface-200 animate-pulse" />
                   <div className="mt-4 space-y-2">
                     <div className="h-2 w-20 bg-surface-200 rounded animate-pulse" />
                     <div className="h-4 w-40 bg-surface-200 rounded animate-pulse" />
