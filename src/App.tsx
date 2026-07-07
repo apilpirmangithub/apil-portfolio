@@ -116,6 +116,7 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
             className="w-full h-full object-contain"
             controls
             autoPlay={!item.noAutoPlay}
+            preload="none"
             playsInline
             muted
             loop
@@ -131,6 +132,7 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
         className={`w-full h-auto object-contain bg-black/60 transition-all duration-500 ${isExpanded ? 'max-h-screen' : 'max-h-[70vh]'}`}
         controls
         autoPlay={!item.noAutoPlay}
+        preload="none"
         playsInline
         muted
         loop
@@ -345,6 +347,7 @@ function Home() {
                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-700"
                 controls
                 autoPlay 
+                preload="auto"
                 muted 
                 loop 
                 playsInline 
