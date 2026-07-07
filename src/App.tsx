@@ -544,9 +544,9 @@ function Home() {
 
                 
                 {item.title && (
-                  <div className="flex items-start gap-3 px-2 pb-2">
-                    <div className="w-1 h-4 bg-brand-primary rounded-full mt-0.5 shrink-0" />
-                    <h3 className="text-sm font-display font-medium text-ink-900 leading-snug group-hover/card:text-brand-primary transition-colors duration-300">
+                  <div className="flex items-center gap-2.5 px-2 pb-1.5">
+                    <div className="w-[3px] h-3 bg-brand-primary rounded-full shrink-0" />
+                    <h3 className="text-[11px] font-bold text-ink-600 uppercase tracking-[0.15em] group-hover/card:text-brand-primary transition-colors duration-300">
                       {item.title}
                     </h3>
                   </div>
