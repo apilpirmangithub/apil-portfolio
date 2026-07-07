@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
@@ -157,6 +157,17 @@ function Home() {
 
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        heroVideoRef.current?.pause();
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (!selectedItem) setIsExpanded(false);
@@ -343,6 +354,7 @@ function Home() {
             >
               <div className="absolute inset-0 bg-ink-900/10 pointer-events-none z-10 group-hover:bg-transparent transition-all duration-700" />
               <video 
+                ref={heroVideoRef}
                 src="https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423401/hero-video_voedvc.mp4" 
                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-700"
                 controls
@@ -351,6 +363,10 @@ function Home() {
                 muted 
                 loop 
                 playsInline 
+                onMouseEnter={(e) => e.currentTarget.play().catch(() => {})}
+                onMouseLeave={(e) => {
+                  if (window.scrollY > 100) e.currentTarget.pause();
+                }}
               />
             </motion.div>
 
