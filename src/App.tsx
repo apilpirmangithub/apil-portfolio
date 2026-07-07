@@ -77,6 +77,23 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
   }
 
   if (isVideo) {
+    if (!isExpanded) {
+      return (
+        <div className="relative w-full aspect-[4/5] sm:aspect-video bg-black flex items-center justify-center overflow-hidden">
+          <img 
+            src={item.poster || displayUrl.replace('.mp4', '.jpg')} 
+            alt={item.title || "Video thumbnail"}
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+          />
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <div className="w-16 h-16 rounded-full bg-black/40 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:bg-brand-primary/90">
+              <Play className="w-6 h-6 text-white ml-1" fill="currentColor" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     const ytMatch = displayUrl.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/);
     if (ytMatch) {
       const videoId = ytMatch[1].split('&')[0];
@@ -115,10 +132,9 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
             poster={item.poster}
             className="w-full h-full object-contain"
             controls
-            autoPlay={!item.noAutoPlay}
-            preload="none"
+            autoPlay
             playsInline
-            muted
+            muted={false}
             loop
           />
         </div>
@@ -131,10 +147,9 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
         poster={item.poster}
         className={`w-full h-auto object-contain bg-black/60 transition-all duration-500 ${isExpanded ? 'max-h-screen' : 'max-h-[70vh]'}`}
         controls
-        autoPlay={!item.noAutoPlay}
-        preload="none"
+        autoPlay
         playsInline
-        muted
+        muted={false}
         loop
       />
     );
