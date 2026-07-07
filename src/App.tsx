@@ -514,7 +514,7 @@ function Home() {
                     setIsExpanded(true);
                   }
                 }}
-                className="cursor-pointer"
+                className="cursor-pointer flex flex-col gap-3"
               >
                 <div className={`group relative overflow-hidden rounded-xl bg-surface-200 luxury-shadow ${playingVideoId === (item.id || index) ? 'aspect-video ring-2 ring-brand-primary/50' : ''}`}>
                    {index === 5 ? (
@@ -562,6 +562,15 @@ function Home() {
                     </div>
                   )}
                 </div>
+                
+                {item.title && (
+                  <div className="flex items-start gap-3 px-1">
+                    <div className="w-1 h-4 bg-brand-primary rounded-full mt-0.5 shrink-0" />
+                    <h3 className="text-sm font-display font-medium text-ink-900 leading-snug">
+                      {item.title}
+                    </h3>
+                  </div>
+                )}
               </motion.div>
             )) : (
               <div className="w-full py-20 text-center">
