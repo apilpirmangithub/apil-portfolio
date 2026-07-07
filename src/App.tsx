@@ -50,7 +50,7 @@ const SectionHeader = ({ title, subtitle }: { title: string; subtitle?: string }
   </div>
 );
 
-const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: boolean }) => {
+const MediaRenderer = ({ item, isExpanded = false, isPlayingInline = false }: { item: any; isExpanded?: boolean; isPlayingInline?: boolean }) => {
   let displayUrl = item.thumbnail || "";
 
   // Handle Google Drive Links
@@ -77,7 +77,7 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
   }
 
   if (isVideo) {
-    if (!isExpanded) {
+    if (!isExpanded && !isPlayingInline) {
       return (
         <div className="relative w-full aspect-[4/5] sm:aspect-video bg-black flex items-center justify-center overflow-hidden">
           <img 
@@ -130,9 +130,9 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
           <video 
             src={displayUrl} 
             poster={item.poster}
-            className="w-full h-full object-contain"
+            className={`w-full h-full ${isPlayingInline ? 'object-cover' : 'object-contain'}`}
             controls
-            autoPlay
+            autoPlay={isExpanded || isPlayingInline}
             playsInline
             muted={false}
             loop
@@ -145,9 +145,9 @@ const MediaRenderer = ({ item, isExpanded = false }: { item: any; isExpanded?: b
       <video 
         src={displayUrl} 
         poster={item.poster}
-        className={`w-full h-auto object-contain bg-black/60 transition-all duration-500 ${isExpanded ? 'max-h-screen' : 'max-h-[70vh]'}`}
+        className={`w-full h-full ${isPlayingInline ? 'object-cover aspect-video' : 'object-contain'} transition-all duration-500 ${isExpanded ? 'max-h-screen bg-black/60' : 'bg-black'}`}
         controls
-        autoPlay
+        autoPlay={isExpanded || isPlayingInline}
         playsInline
         muted={false}
         loop
@@ -172,6 +172,7 @@ function Home() {
 
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [playingVideoId, setPlayingVideoId] = useState<string | number | null>(null);
   const heroVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -506,20 +507,22 @@ function Home() {
                       url = 'https://' + url;
                     }
                     window.open(url, '_blank', 'noopener,noreferrer');
+                  } else if (item.category === 'Video') {
+                    setPlayingVideoId(item.id || index);
                   } else {
                     setSelectedItem(item);
-                    setIsExpanded(false);
+                    setIsExpanded(true);
                   }
                 }}
                 className="cursor-pointer"
               >
-                <div className="group relative overflow-hidden rounded-xl bg-surface-200 luxury-shadow">
+                <div className={`group relative overflow-hidden rounded-xl bg-surface-200 luxury-shadow ${playingVideoId === (item.id || index) ? 'aspect-video ring-2 ring-brand-primary/50' : ''}`}>
                    {index === 5 ? (
                      <div className="relative w-full aspect-video overflow-hidden">
-                       <MediaRenderer item={item} />
+                       <MediaRenderer item={item} isPlayingInline={playingVideoId === (item.id || index)} />
                      </div>
                    ) : (
-                     <MediaRenderer item={item} />
+                     <MediaRenderer item={item} isPlayingInline={playingVideoId === (item.id || index)} />
                    )}
                    {item.category === 'Dev' ? (
                      <div className="absolute inset-0 bg-brand-primary/0 group-hover:bg-brand-primary/80 transition-all duration-500 flex items-center justify-center opacity-0 group-hover:opacity-100">
