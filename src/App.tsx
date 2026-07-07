@@ -319,7 +319,7 @@ function Home() {
       <nav className="fixed top-0 left-0 z-50 w-full bg-surface-50/80 backdrop-blur-xl border-b border-surface-200">
         <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
           <span className="font-display font-bold text-ink-900 tracking-tighter text-3xl md:text-4xl">APIL<span className="text-brand-primary">.</span></span>
-          <div className="hidden md:flex gap-12 text-sm font-bold tracking-[0.3em] uppercase text-ink-400">
+          <div className="flex gap-12 text-sm font-bold tracking-[0.3em] uppercase text-ink-400">
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=apilpirman@gmail.com"
               target="_blank"
