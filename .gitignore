@@ -1,0 +1,7 @@
+node_modules
+dist
+video/
+*.mp4
+fetch_cloudinary.cjs
+cloudinary_output.txt
+.env

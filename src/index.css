@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Fraunces", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", serif;
+  
+  --color-brand-primary: #FFB800;
+  --color-brand-secondary: #FF8A00;
+  --color-surface-50: #EDE9E0; 
+  --color-surface-100: #E6E1D6;
+  --color-surface-200: #D9D2C5;
+  --color-ink-900: #0F0F10;
+  --color-ink-700: #3F3F46;
+  --color-ink-400: #A1A1AA;
+}
+
+@layer base {
+  body {
+    @apply bg-surface-50 text-ink-700 font-sans antialiased selection:bg-brand-primary selection:text-white;
+  }
+}
+
+.luxury-shadow {
+  box-shadow: 0 10px 40px -10px rgba(0,0,0,0.05);
+}
+
+.text-editorial {
+  @apply font-display italic font-light;
+}

@@ -1,0 +1,25 @@
+{
+  "entities": {
+    "PortfolioItem": {
+      "title": "Portfolio Item",
+      "description": "An item displayed in the gallery",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["AI", "Non-AI"] },
+        "title": { "type": "string" },
+        "category": { "type": "string", "enum": ["Image", "Video"] },
+        "thumbnail": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "order": { "type": "number" }
+      },
+      "required": ["id", "type", "title", "category", "thumbnail"]
+    }
+  },
+  "firestore": {
+    "/portfolio": {
+      "schema": "PortfolioItem",
+      "description": "Collection of gallery items"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == "apilpirman@gmail.com" && request.auth.token.email_verified == true;
+    }
+
+    function isValidPortfolioItem(data) {
+      return data.keys().hasAll(['id', 'type', 'title', 'category', 'thumbnail', 'createdAt', 'tags']) &&
+             data.id is string && data.id.size() <= 200 &&
+             data.title is string && data.title.size() <= 200 &&
+             data.thumbnail is string && data.thumbnail.size() <= 1048576 &&
+             data.type in ['AI', 'Non-AI'] &&
+             data.category in ['Image', 'Video', 'Dev'] &&
+             (!('externalLink' in data) || (data.externalLink is string && data.externalLink.size() <= 500)) &&
+             data.tags is list;
+    }
+
+    match /portfolio/{itemId} {
+      allow read: if true; // Publicly viewable
+      allow create: if isAdmin() && isValidPortfolioItem(request.resource.data);
+      allow update: if isAdmin() && isValidPortfolioItem(request.resource.data);
+      allow delete: if isAdmin();
+    }
+    
+    // Support for metadata/configs if needed
+    match /test/connection {
+      allow read: if true;
+    }
+  }
+}
