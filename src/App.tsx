@@ -541,27 +541,7 @@ function Home() {
                     </div>
                   )}
                 </div>
-                <div className="mt-4 text-center md:text-left px-2">
-                  <div className="flex items-center justify-center md:justify-start gap-2 mb-1">
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-brand-primary uppercase">
-                      {item.category === 'Dev' ? 'Dev Project' : item.category}
-                    </span>
-                  </div>
-                  {item.title && item.category !== 'Dev' && (
-                    <h4 className="text-lg font-display font-medium text-ink-900 group-hover:italic transition-all">
-                      {item.title}
-                    </h4>
-                  )}
-                  {item.tags && item.tags.length > 0 && (
-                    <div className="flex flex-wrap justify-center md:justify-start gap-1 mt-2">
-                      {item.tags.map((tag: string) => (
-                        <span key={tag} className="px-2 py-0.5 bg-surface-200 rounded text-[8px] font-bold text-ink-400 uppercase tracking-tighter">
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
+
                 
                 {item.title && (
                   <div className="flex items-start gap-3 px-2 pb-2">
