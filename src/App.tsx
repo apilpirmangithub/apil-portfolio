@@ -514,9 +514,9 @@ function Home() {
                     setIsExpanded(true);
                   }
                 }}
-                className="cursor-pointer flex flex-col gap-3"
+                className="cursor-pointer flex flex-col gap-4 bg-surface-50 border border-surface-200 rounded-[1.5rem] p-3 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:border-brand-primary/30 transition-all duration-500 group/card"
               >
-                <div className={`group relative overflow-hidden rounded-xl bg-surface-200 luxury-shadow ${playingVideoId === (item.id || index) ? 'aspect-video ring-2 ring-brand-primary/50' : ''}`}>
+                <div className={`group relative overflow-hidden rounded-xl bg-black ${playingVideoId === (item.id || index) ? 'aspect-video ring-2 ring-brand-primary/50' : ''}`}>
                    {index === 5 ? (
                      <div className="relative w-full aspect-video overflow-hidden">
                        <MediaRenderer item={item} isPlayingInline={playingVideoId === (item.id || index)} />
@@ -564,9 +564,9 @@ function Home() {
                 </div>
                 
                 {item.title && (
-                  <div className="flex items-start gap-3 px-1">
+                  <div className="flex items-start gap-3 px-2 pb-2">
                     <div className="w-1 h-4 bg-brand-primary rounded-full mt-0.5 shrink-0" />
-                    <h3 className="text-sm font-display font-medium text-ink-900 leading-snug">
+                    <h3 className="text-sm font-display font-medium text-ink-900 leading-snug group-hover/card:text-brand-primary transition-colors duration-300">
                       {item.title}
                     </h3>
                   </div>
