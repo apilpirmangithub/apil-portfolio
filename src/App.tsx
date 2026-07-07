@@ -508,7 +508,7 @@ function Home() {
                     window.open(url, '_blank', 'noopener,noreferrer');
                   } else {
                     setSelectedItem(item);
-                    setIsExpanded(true);
+                    setIsExpanded(false);
                   }
                 }}
                 className="cursor-pointer"
