@@ -185,14 +185,14 @@ function Home() {
     else if (index === 7) title = 'Cinematic UGC Videos Montage';
     
     const thumbMap: Record<number, string> = {
-      0: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783424880/VIDEO1_aob6jj.mp4',
-      1: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783423708/video2_z5hzoq.mp4',
-      2: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783423668/video3_jywxfh.mp4',
-      3: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783423492/Video4_cfuoyw.mp4',
-      4: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783424859/VIDEO5_q6e30f.mp4',
-      5: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783424922/VIDEO6_xurmun.mp4',
-      6: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783423761/Video7_gzwoem.mp4',
-      7: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_720/v1783423787/video8_ai2rr4.mp4',
+      0: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783424880/VIDEO1_aob6jj.mp4',
+      1: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423708/video2_z5hzoq.mp4',
+      2: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423668/video3_jywxfh.mp4',
+      3: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423492/Video4_cfuoyw.mp4',
+      4: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783424859/VIDEO5_q6e30f.mp4',
+      5: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783424922/VIDEO6_xurmun.mp4',
+      6: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423761/Video7_gzwoem.mp4',
+      7: 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423787/video8_ai2rr4.mp4',
     };
     const posterMap: Record<number, string> = {
       0: 'https://res.cloudinary.com/vxy1o0uw/image/upload/q_auto,f_auto,w_480/v1783423422/thumbnail-video1_otssj6.png',
@@ -208,7 +208,7 @@ function Home() {
     return { 
       ...item, 
       title,
-      thumbnail: thumbMap[index] ?? 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_1280/v1783423401/hero-video_voedvc.mp4',
+      thumbnail: thumbMap[index] ?? 'https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423401/hero-video_voedvc.mp4',
       poster: posterMap[index],
       noAutoPlay: index <= 7,
       forceLetterbox: index === 5
@@ -343,7 +343,7 @@ function Home() {
             >
               <div className="absolute inset-0 bg-ink-900/10 pointer-events-none z-10 group-hover:bg-transparent transition-all duration-700" />
               <video 
-                src="https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto,w_1280/v1783423401/hero-video_voedvc.mp4" 
+                src="https://res.cloudinary.com/vxy1o0uw/video/upload/q_auto,f_auto/v1783423401/hero-video_voedvc.mp4" 
                 className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-all duration-700"
                 controls
                 autoPlay 
